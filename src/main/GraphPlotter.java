@@ -6,5 +6,4 @@ package main;
 public class GraphPlotter {
 
 
-
 }

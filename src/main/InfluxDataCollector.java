@@ -6,10 +6,10 @@ import org.influxdb.dto.Pong;
 import org.influxdb.dto.Query;
 import org.influxdb.dto.QueryResult;
 
-
-
 import java.io.IOException;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by andrke on 2.10.2015.
@@ -73,7 +73,7 @@ public class InfluxDataCollector {
 //                    Iterator<Object> item = items.iterator();
 //                    Object date = item.next();
 //                    Object temp = item.next();
-//                    System.out.println(String.format("Kuupäev on %s ja temp on %f", date,temp));
+//                    System.out.println(String.format("Kuupï¿½ev on %s ja temp on %f", date,temp));
 //                    }
 
             }
