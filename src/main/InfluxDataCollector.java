@@ -19,6 +19,7 @@ import java.util.ListIterator;
  * Example from https://github.com/influxdb/influxdb-java
  */
 
+
 public class InfluxDataCollector {
 
     private InfluxDB influxDB;
@@ -83,14 +84,6 @@ public class InfluxDataCollector {
 
                 sValues = values;
 
-
-//                while (values.hasNext()) {
-//                    List<Object> items =  values.next();
-//                    Iterator<Object> item = items.iterator();
-//                    Object date = item.next();
-//                    Object temp = item.next();
-//                    System.out.println(String.format("Kuup�ev on %s ja temp on %f", date,temp));
-//                    }
 
             }
         }
