@@ -5,21 +5,26 @@ import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Pong;
 import org.influxdb.dto.Query;
 import org.influxdb.dto.QueryResult;
+import retrofit.RetrofitError;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
 /**
- * Created by andrke on 2.10.2015.
+ * Created by andrke on 2.12.2015.
+ *
+ * Example from https://github.com/influxdb/influxdb-java
  */
+
 public class InfluxDataCollector {
 
     private InfluxDB influxDB;
     private String dbName = "temps";
 
-    public InfluxDataCollector() throws InterruptedException, IOException {
+    public InfluxDataCollector() throws InterruptedException, IOException, RetrofitError, ConnectException {
 
         String ip = "217.159.228.173";
         this.influxDB = InfluxDBFactory.connect("http://" + ip + ":8086", "temps", "temps");
@@ -49,16 +54,27 @@ public class InfluxDataCollector {
     }
 
 
-    public QueryResult series() {
+    public Iterator<List<Object>> getSensorList() {
+        Iterator<List<Object>> sValues = null;
+
         Query query = new Query("SHOW SERIES", this.dbName);
-        QueryResult result = this.influxDB.query(query);
-        return result;
+        Iterator<QueryResult.Result> results = this.influxDB.query(query).getResults().iterator();
+        while (results.hasNext()) {
+            ListIterator<QueryResult.Series> series = results.next().getSeries().listIterator();
+            while (series.hasNext()) {
+                Iterator<List<Object>> values = series.next().getValues().iterator();
+
+                sValues = values;
+
+            }
+        }
+        return sValues;
     }
 
     public Iterator<List<Object>> sensorValues(String table, String sensor, String period) {
         Iterator<List<Object>> sValues = null;
 
-        Query query = new Query(String.format("select  value from %s where sensor = '%s' and time > now() - '%s'", table, sensor, period), dbName);
+        Query query = new Query(String.format("select  mean(value) from %s where sensor = '%s' and time > now() - %s group by time(1h) fill(0)", table, sensor, period), dbName);
         Iterator<QueryResult.Result> results = this.influxDB.query(query).getResults().iterator();
         while (results.hasNext()) {
             ListIterator<QueryResult.Series> series = results.next().getSeries().listIterator();
