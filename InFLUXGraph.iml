@@ -20,5 +20,6 @@
     </orderEntry>
     <orderEntry type="library" name="org.influxdb:influxdb-java:2.01" level="project" />
     <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="org.influxdb:influxdb-java:2.0" level="project" />
   </component>
 </module>
