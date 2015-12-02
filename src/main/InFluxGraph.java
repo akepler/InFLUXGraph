@@ -11,7 +11,17 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 /*
-This example programe used from https://docs.oracle.com/javafx/2/charts/area-chart.htm#CIHCFGBA
+* This example used from https://docs.oracle.com/javafx/2/charts/area-chart.htm#CIHCFGBA
+*
+* Required external libraries.
+* Module Setting (F4) > Libraries > + > Maven > org.influxdb:influxdb-java:2.0 > ok
+*
+*
+* This project contains three build blocks.
+* 1. Raspberry PI with python daemon for reading and pushing temperature values
+*   Updater is avalible from https://github.com/akepler/influxUpdater
+* 2. InfluxDB in cloud
+* 4. Java grpahing interface
 */
 
 public class InFluxGraph extends Application {
