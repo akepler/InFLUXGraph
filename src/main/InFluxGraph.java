@@ -14,7 +14,7 @@ import java.util.List;
 * This example used from https://docs.oracle.com/javafx/2/charts/area-chart.htm#CIHCFGBA
 *
 * Required external libraries.
-* Module Setting (F4) > Libraries > + > From Maven > org.influxdb:influxdb-java:2.0 > ok
+* Right click on project > Module Setting (F4) > Libraries > + > From Maven > search for org.influxdb > click on  org.influxdb:influxdb-java:2.0 > select download to > click ok
 *
 *
 * This project contains three build blocks.
